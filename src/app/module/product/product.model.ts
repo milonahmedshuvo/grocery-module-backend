@@ -31,6 +31,11 @@ const productSchema = new Schema<TProduct> ({
 
 
 
+productSchema.pre('find', async function (next){
+    this.find({isDaleted: false })
+    next()
+})
+
 
 
 // creating model 

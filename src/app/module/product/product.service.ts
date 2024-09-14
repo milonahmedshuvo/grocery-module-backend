@@ -15,8 +15,25 @@ const productGetFromDB = async () => {
 
 
 
+const productDeleteFromDB = async (id:string) => {
+    const product = await Product.findByIdAndUpdate(id, {isDaleted: true})
+    return product
+}
+
+
+const productUpdateFromDB = async (id:string, payload:TProduct) => {
+
+    // console.log(' update service', id, payload)
+    const product = await Product.findByIdAndUpdate(id, payload )
+    return product
+}
+
+
+
 
 export const productService = {
     productAddIntoDB,
-    productGetFromDB
+    productGetFromDB,
+    productDeleteFromDB,
+    productUpdateFromDB 
 }

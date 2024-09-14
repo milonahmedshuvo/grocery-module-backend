@@ -24,9 +24,6 @@ const productAdd = async (req: Request, res: Response, next: NextFunction) => {
 const productGet = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
-       
-       
-
         const result = await productService.productGetFromDB()
 
         res.status(200).json({
@@ -41,7 +38,60 @@ const productGet = async (req: Request, res: Response, next: NextFunction) => {
 }
 
 
+
+
+const productDelete = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+        const {id} = req.params
+   
+        const result = await productService.productDeleteFromDB(id)
+
+        res.status(200).json({
+            success: true,
+            message: 'product delete success!!',
+            data: result
+        })
+    }catch(err){
+        // console.log(err)
+        next(err)
+    }
+}
+
+
+
+
+const productUpdate = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+        const {id} = req.params
+        const product = req.body
+        // console.log('product', product)
+        // console.log('id', id)
+
+
+
+
+        const result = await productService.productUpdateFromDB(id, product)
+
+        res.status(200).json({
+            success: true,
+            message: 'product update success!!',
+            data: result
+        })
+    }catch(err){
+        // console.log(err)
+        next(err)
+    }
+}
+
+
+
+
+
 export const productController = {
     productAdd,
-    productGet
+    productGet,
+    productDelete,
+    productUpdate
 }
