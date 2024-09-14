@@ -1,4 +1,4 @@
-import AppError from "../error/apperror"
+import AppError from "../../error/apperror"
 import { User } from "../user/user.model"
 import bcrypt from 'bcrypt'
 import { TUserLogin } from "./user.interface"

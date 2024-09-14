@@ -3,6 +3,7 @@ import cors from 'cors'
 import { userRoutes } from './app/module/user/user.routes'
 import config from './app/config'
 import { authenticationRoute } from './app/module/authentication/user.routes'
+import { productRoute } from './app/module/product/product.routes'
 const app = express()
 
 
@@ -15,9 +16,18 @@ app.use(express.json())
 // application routes 
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/user", authenticationRoute)
+app.use("/api/v1/product",productRoute)
 
 
 
+
+
+
+
+
+app.get('/', (req, res) => {
+  res.send('Grocery root route runing...')
+})
 
 
 
@@ -59,9 +69,7 @@ app.use((req:Request, res:Response, next:NextFunction) => {
 
 
 
-app.get('/', (req, res) => {
-  res.send('Grocery root route runing...')
-})
+
 
 
 export default app
