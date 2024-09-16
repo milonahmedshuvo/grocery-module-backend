@@ -14,6 +14,11 @@ const productGetFromDB = async () => {
 }
 
 
+const productGetSingleFromDB = async (id:string) => {
+    const product = await Product.findById(id)
+    return product
+}
+
 
 const productDeleteFromDB = async (id:string) => {
     const product = await Product.findByIdAndUpdate(id, {isDaleted: true})
@@ -34,6 +39,7 @@ const productUpdateFromDB = async (id:string, payload:TProduct) => {
 export const productService = {
     productAddIntoDB,
     productGetFromDB,
+    productGetSingleFromDB,
     productDeleteFromDB,
     productUpdateFromDB 
 }

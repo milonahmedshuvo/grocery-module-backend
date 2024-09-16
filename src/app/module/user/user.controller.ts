@@ -4,7 +4,8 @@ import { userService } from "./user.service";
 const userCreate = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
-        const user = req.body.data
+        const user = req.body.data //redux use
+        // const user = req.body  //postman 
        
 
         const result = await userService.userCreateIntoDB(user)

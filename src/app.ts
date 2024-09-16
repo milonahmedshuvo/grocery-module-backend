@@ -4,6 +4,7 @@ import { userRoutes } from './app/module/user/user.routes'
 import config from './app/config'
 import { authenticationRoute } from './app/module/authentication/user.routes'
 import { productRoute } from './app/module/product/product.routes'
+import { orderRoute } from './app/module/order/order.routes'
 const app = express()
 
 
@@ -17,6 +18,7 @@ app.use(express.json())
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/user", authenticationRoute)
 app.use("/api/v1/product",productRoute)
+app.use("/api/v1/order",orderRoute)
 
 
 

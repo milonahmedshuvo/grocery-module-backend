@@ -40,6 +40,26 @@ const productGet = async (req: Request, res: Response, next: NextFunction) => {
 
 
 
+const productGetSingle = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+        const {id} = req.params
+        const result = await productService.productGetSingleFromDB(id)
+
+        res.status(200).json({
+            success: true,
+            message: 'product salvation success!!',
+            data: result
+        })
+    }catch(err){
+        // console.log(err)
+        next(err)
+    }
+}
+
+
+
+
 const productDelete = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
@@ -92,6 +112,7 @@ const productUpdate = async (req: Request, res: Response, next: NextFunction) =>
 export const productController = {
     productAdd,
     productGet,
+    productGetSingle,
     productDelete,
     productUpdate
 }
