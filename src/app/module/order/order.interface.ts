@@ -1,8 +1,9 @@
 export type TOrder = {
-    title: string,
-    price: number,
-    image:string,
+    totalPrice: number,
     isDaleted: boolean,
     orderStatus: string,
     email: string,
+    items: number,
 }
+
+

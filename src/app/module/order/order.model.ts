@@ -2,28 +2,24 @@ import { model, Schema } from "mongoose";
 import { TOrder } from "./order.interface";
 
 const orderSchema = new Schema<TOrder>({
-    title: {
-        type: String,
-        required: true
-    },
-    price: {
+    totalPrice: {
         type: Number,
-        required: true
-    },
-    image: {
-        type: String,
         required: true
     },
     isDaleted: {
         type: Boolean,
-        required: true
+        default: false
     },
     orderStatus: {
         type: String,
-        required: true
+        default: "panding"
     },
     email: {
         type: String,
+        required: true
+    },
+    items: {
+        type : Number,
         required: true
     }
 
@@ -33,5 +29,7 @@ const orderSchema = new Schema<TOrder>({
 
 
 
+
+
 // creating model 
-export const Order = model<TOrder>('Order', orderSchema)
+export const Order = model<TOrder>('Order', orderSchema )

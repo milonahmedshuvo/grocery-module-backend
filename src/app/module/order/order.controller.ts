@@ -4,10 +4,10 @@ import { orderService } from "./order.service"
 const orderCreate = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
-        const order = req.body    //postman
-        // const order = req.body.data //redux ui
+        // const order = req.body    //postman
+        const order = req.body.data //redux ui
        
-
+        
         // jwt verify data 
         const decoded = req.user
 
