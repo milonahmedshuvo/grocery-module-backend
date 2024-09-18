@@ -7,7 +7,9 @@ const router = express.Router()
 
 
 router.post('/create', auth(userRole.admin, userRole.user), orderController.orderCreate)
-
+router.get('/all', orderController.orderAllGet)
+router.get('/myorder',auth(userRole.user), orderController.myorder)
+router.delete('/status/change/:id', orderController.orderStatusChange)
 
 
 export const orderRoute = router

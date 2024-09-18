@@ -16,7 +16,32 @@ const userCreate = async (req: Request, res: Response, next: NextFunction) => {
             data: result
         })
     }catch(err){
-        console.log(err)
+        // console.log(err)
+        next(err)
+    }
+}
+
+
+
+
+const currentUser = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+       
+        const user = req.user
+       
+
+        console.log('usssssssssssss' , user)
+
+        const result = await userService.currentUserFromDB(user)
+
+        res.status(200).json({
+            success: true,
+            message: 'user create success!!',
+            data: result
+        })
+    }catch(err){
+        // console.log(err)
         next(err)
     }
 }
@@ -26,7 +51,8 @@ const userCreate = async (req: Request, res: Response, next: NextFunction) => {
 
 
 export const userController = {
-    userCreate
+    userCreate,
+    currentUser
 }
 
 

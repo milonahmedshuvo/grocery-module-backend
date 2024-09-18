@@ -1,7 +1,7 @@
 import config from "../../config";
 import { TUser } from "./user.interface";
 import { User } from "./user.model";
-import jwt from 'jsonwebtoken'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 
 const userCreateIntoDB = async (payload:TUser) => {
 
@@ -29,10 +29,22 @@ const userCreateIntoDB = async (payload:TUser) => {
 
 
 
+const currentUserFromDB = async (jwtData:JwtPayload) => {
+      
+      const email = jwtData.email
+
+      console.log("jwt", jwtData)
+
+      const user = await User.findOne({email})
+
+      return user
+}
+
 
 
 export const userService = {
-   userCreateIntoDB
+   userCreateIntoDB,
+   currentUserFromDB
  }
 
 

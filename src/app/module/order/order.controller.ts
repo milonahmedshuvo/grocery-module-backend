@@ -27,6 +27,72 @@ const orderCreate = async (req: Request, res: Response, next: NextFunction) => {
 
 
 
+
+const orderAllGet = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+       
+        const result = await orderService.orderAllGetFromDB() 
+
+        res.status(200).json({
+            success: true,
+            message: 'order get all success!!',
+            data: result
+        })
+    }catch(err){
+        // console.log(err)
+        next(err)
+    }
+}
+
+
+const orderStatusChange = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+        const {id} = req.params
+        const result = await orderService.orderStatusChangeFromDB(id) 
+
+        res.status(200).json({
+            success: true,
+            message: 'order is delivared success!!',
+            data: result
+        })
+    }catch(err){
+        // console.log(err)
+        next(err)
+    }
+}
+
+
+
+const myorder = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+        const user = req.user
+        const result = await orderService.myorderFromDB(user)
+
+
+        
+        res.status(200).json({
+            success: true,
+            message: 'order is delivared success!!',
+            data: result
+        })
+    }catch(err){
+        // console.log(err)
+        next(err)
+    }
+}
+
+
+
+
+
+
 export const orderController = {
-    orderCreate
+    orderCreate,
+    orderAllGet,
+    orderStatusChange,
+    myorder
+    
 }

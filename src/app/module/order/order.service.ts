@@ -26,7 +26,35 @@ const orderCreateIntoDB = async (payload:TOrder, jwtData:JwtPayload ) => {
 
 
 
+const orderAllGetFromDB = async () => {
+
+    const result = await Order.find()
+    return result
+}
+
+
+const orderStatusChangeFromDB = async (id:string) => {
+
+    const result = await Order.findByIdAndUpdate(id, {orderStatus: 'Delivered'})
+    return result
+}
+
+
+const myorderFromDB = async (jwtData: JwtPayload) => {
+    
+    console.log('my order', jwtData)
+    const email = jwtData.email
+    const result = await Order.find({email})
+    return result
+}
+
+
+
+
 export const orderService = {
-    orderCreateIntoDB
+    orderCreateIntoDB,
+    orderAllGetFromDB,
+    orderStatusChangeFromDB,
+    myorderFromDB
 }
 
